@@ -11,25 +11,14 @@ import androidx.fragment.app.*
 import com.example.testapplication.BaseFragment
 import com.example.testapplication.R
 import com.example.testapplication.databinding.FragmentLoginBinding
+import com.example.testapplication.databinding.FragmentStationBinding
 import com.example.testapplication.presentation.station.StationFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment() {
-
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate){
 
     private val viewModel:LoginViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,10 +65,4 @@ class LoginFragment : BaseFragment() {
             }
         )
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import com.example.testapplication.BaseFragment
 import com.example.testapplication.R
 import com.example.testapplication.databinding.FragmentLoginBinding
+import com.example.testapplication.databinding.FragmentSettingsBinding
 import com.example.testapplication.databinding.FragmentStationBinding
 import com.example.testapplication.presentation.settings.SettingsFragment
 import com.example.testapplication.presentation.station.adapter.StationsAdapter
@@ -21,10 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class StationFragment : BaseFragment() {
-
-    private var _binding: FragmentStationBinding? = null
-    private val binding get() = _binding!!
+class StationFragment : BaseFragment<FragmentStationBinding>(FragmentStationBinding::inflate) {
 
     private val viewModel:StationsViewModel by viewModels()
 
@@ -34,16 +32,9 @@ class StationFragment : BaseFragment() {
         }
     }
 
-
     private var adapter:StationsAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentStationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,14 +77,6 @@ class StationFragment : BaseFragment() {
             )
         }
 
-    }
-
-
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 }
