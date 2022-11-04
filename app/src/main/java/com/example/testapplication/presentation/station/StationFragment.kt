@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import com.example.testapplication.BaseFragment
 import com.example.testapplication.R
 import com.example.testapplication.databinding.FragmentLoginBinding
 import com.example.testapplication.databinding.FragmentStationBinding
+import com.example.testapplication.presentation.settings.SettingsFragment
 import com.example.testapplication.presentation.station.adapter.StationsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,7 +35,7 @@ class StationFragment : BaseFragment() {
     }
 
 
-    var adapter:StationsAdapter? = null
+    private var adapter:StationsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,16 +47,22 @@ class StationFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getStations()
         initObservable()
         initListener()
-
     }
 
-    private fun initListener(){}
+    private fun initListener(){
+        binding.settings.fromAsset("icType2.pdf").load()
+        binding.settingsView.setOnClickListener{
+            activity?.supportFragmentManager?.commit {
+                replace<SettingsFragment>(R.id.fragment_container_view)
+            }
+        }
+    }
 
 
     private fun initObservable(){
+        viewModel.getStations()
         with(viewModel){
             stationsLiveData.observeUIState(
                 onSuccess = {
@@ -61,12 +72,16 @@ class StationFragment : BaseFragment() {
                         callback
                     )
                     binding.recycle.adapter = adapter
+                    binding.progress.isGone = true
+                    binding.loadingView.isGone = true
                 },
                 onError = {
-                    Toast.makeText(requireContext(), "123123", Toast.LENGTH_SHORT).show()
+                    binding.progress.isGone = true
+                    binding.loadingView.isGone = true
                 },
                 onLoading = {
-
+                    binding.progress.isVisible = true
+                    binding.loadingView.isVisible = true
                 }
             )
         }

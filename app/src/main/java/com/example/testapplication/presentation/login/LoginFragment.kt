@@ -63,9 +63,10 @@ class LoginFragment : BaseFragment() {
                 activity?.supportFragmentManager?.commit{
                     replace<StationFragment>(R.id.fragment_container_view)
                 }
+                binding.progress.isGone = true
+                binding.loadingView.isGone = true
             },
             onError = {
-                Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                 binding.progress.isGone = true
                 binding.loadingView.isGone = true
             },
