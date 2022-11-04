@@ -44,7 +44,7 @@ class StationFragment : BaseFragment<FragmentStationBinding>(FragmentStationBind
 
     private fun initListener(){
         binding.settings.fromAsset("icType2.pdf").load()
-        binding.settingText.setOnClickListener{
+        binding.settingsLl.setOnClickListener{
             activity?.supportFragmentManager?.commit {
                 replace<SettingsFragment>(R.id.fragment_container_view)
             }
