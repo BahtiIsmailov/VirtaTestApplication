@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TestApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_in_and_charge">Log In and Charge!</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="i_forgot">I Forgot!</string>
+    <string name="register_and_benefit">Register and benefit</string>
+    <string name="log_in">Log in</string>
+    <string name="_1candidate">1Candidate!</string>
+    <string name="candidate1_virta_global">candidate1@virta.global</string>
+</resources>
