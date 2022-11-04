@@ -23,7 +23,9 @@ import kotlin.math.roundToInt
 class StationsAdapter @Inject constructor(
     private val context: Context,
     private val typeItems: List<StationResponseWithSortedByDistance>,
-    private val onItemClickCallBack: OnItemClickCallBack
+    private val onItemClickCallBack: OnItemClickCallBack,
+    private val flagToShowKw: Boolean,
+    private val flagToShowDistance: Boolean
 ) : RecyclerView.Adapter<StationsAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -42,15 +44,20 @@ class StationsAdapter @Inject constructor(
         with(holder.binding) {
             locationName.text = response.name
             addressCity.text = response.address + response.city
-            distance.text = getDistance(response.distance.toString())
+            if (flagToShowDistance) {
+                distance.text = getDistance(response.distance.toString())
+            }
             number1.text = response.connectors[position].maxKw.toString()
             number2.text = response.connectors[position].maxKw.toString()
             number3.text = response.connectors[position].maxKw.toString()
             number4.text = response.connectors[position].maxKw.toString()
-            text1.text = response.connectors[position].type
-            text2.text = response.connectors[position].type
-            text3.text = response.connectors[position].type
-            text4.text = response.connectors[position].type
+
+            if (flagToShowKw) {
+                text1.text = response.connectors[position].type
+                text2.text = response.connectors[position].type
+                text3.text = response.connectors[position].type
+                text4.text = response.connectors[position].type
+            }
 
         }
 
@@ -59,7 +66,7 @@ class StationsAdapter @Inject constructor(
     override fun getItemCount() = typeItems.size
 
 
-    private fun getDistance(distance:String) =
+    private fun getDistance(distance: String) =
         context.getString(R.string.station_distance, distance)
 
 

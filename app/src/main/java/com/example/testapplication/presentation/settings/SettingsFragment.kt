@@ -30,6 +30,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     private fun initView(){
+        binding.toggle.isChecked = viewModel.getFlagToShowKw()
+        binding.toggle2.isChecked = viewModel.getFlagToShowDistance()
         binding.goBack.fromAsset("icX.pdf").load()
     }
 

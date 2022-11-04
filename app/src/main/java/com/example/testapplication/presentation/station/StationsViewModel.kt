@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testapplication.app.App
 import com.example.testapplication.app.AppPrefsKey
 import com.example.testapplication.network.data_station.Connector
 import com.example.testapplication.network.data_station.StationResponse
@@ -75,6 +76,9 @@ class StationsViewModel @Inject constructor(
             }
         }
     }
+
+    fun getFlagToShowKw() = sharedWorker.load(AppPrefsKey.TOGGLE_HIDE_KW,true)
+    fun getFlagToShowDistance() = sharedWorker.load(AppPrefsKey.TOGGLE_HIDE_DISTANCE,true)
 
     private fun getLocation(): List<String> {
         return sharedWorker.load(AppPrefsKey.LOCATION, "48.278067-16.456204").split("-")

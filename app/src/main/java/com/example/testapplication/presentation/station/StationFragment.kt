@@ -60,7 +60,9 @@ class StationFragment : BaseFragment<FragmentStationBinding>(FragmentStationBind
                     adapter = StationsAdapter(
                         requireContext(),
                         it!!,
-                        callback
+                        callback,
+                        viewModel.getFlagToShowKw(),
+                        viewModel.getFlagToShowDistance()
                     )
                     binding.recycle.adapter = adapter
                     binding.progress.isGone = true

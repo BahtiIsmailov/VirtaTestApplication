@@ -19,4 +19,7 @@ class SettingsViewModel @Inject constructor(
     fun clickOnToggleHideDistance(flag: Boolean) {
         sharedWorker.saveMediate(AppPrefsKey.TOGGLE_HIDE_DISTANCE, flag)
     }
+
+    fun getFlagToShowKw() = sharedWorker.load(AppPrefsKey.TOGGLE_HIDE_KW,true)
+    fun getFlagToShowDistance() = sharedWorker.load(AppPrefsKey.TOGGLE_HIDE_DISTANCE,true)
 }
