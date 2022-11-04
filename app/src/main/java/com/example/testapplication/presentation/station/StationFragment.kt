@@ -44,7 +44,7 @@ class StationFragment : BaseFragment<FragmentStationBinding>(FragmentStationBind
 
     private fun initListener(){
         binding.settings.fromAsset("icType2.pdf").load()
-        binding.settingsView.setOnClickListener{
+        binding.settingText.setOnClickListener{
             activity?.supportFragmentManager?.commit {
                 replace<SettingsFragment>(R.id.fragment_container_view)
             }
@@ -65,12 +65,14 @@ class StationFragment : BaseFragment<FragmentStationBinding>(FragmentStationBind
                     binding.recycle.adapter = adapter
                     binding.progress.isGone = true
                     binding.loadingView.isGone = true
+                    binding.settingsLl.isVisible = true
                 },
                 onError = {
                     binding.progress.isGone = true
                     binding.loadingView.isGone = true
                 },
                 onLoading = {
+                    binding.settingsLl.isGone = true
                     binding.progress.isVisible = true
                     binding.loadingView.isVisible = true
                 }

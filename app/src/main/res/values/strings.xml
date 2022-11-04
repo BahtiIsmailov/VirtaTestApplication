@@ -12,4 +12,7 @@
     <string name="candidate1_virta_global">candidate1@virta.global</string>
     <string name="filter_by_distance">Press to Filter by distance</string>
     <string name="station_distance">Distance: %1$s</string>
+    <string name="hides_kw">Hides kW</string>
+    <string name="hides_the_distance_label">Hides the distance label</string>
+    <string name="settings">Settings</string>
 </resources>
