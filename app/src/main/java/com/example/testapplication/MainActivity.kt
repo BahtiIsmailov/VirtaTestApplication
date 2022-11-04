@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                         val location = task.result
                         if (location == null) {
                             requestNewLocationData()
+                            sharedWorker.saveMediate(AppPrefsKey.LOCATION,"48.278067-16.456204")
                         } else {
                             sharedWorker.saveMediate(AppPrefsKey.LOCATION,"${location.latitude}-${location.longitude} ")
                         }

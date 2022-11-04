@@ -10,4 +10,6 @@
     <string name="log_in">Log in</string>
     <string name="_1candidate">1Candidate!</string>
     <string name="candidate1_virta_global">candidate1@virta.global</string>
+    <string name="filter_by_distance">Press to Filter by distance</string>
+    <string name="station_distance">Distance: %1$s</string>
 </resources>

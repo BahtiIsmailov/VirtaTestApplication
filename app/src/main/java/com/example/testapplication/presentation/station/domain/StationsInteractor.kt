@@ -4,5 +4,5 @@ import com.example.testapplication.network.data_station.StationResponse
 
 interface StationsInteractor {
 
-    suspend fun getStations(latitude:Float,longitude:Float,limit:Int):List<StationResponse>
+    suspend fun getStations(latitude:Double,longitude:Double,limit:Int):List<StationResponse>
 }

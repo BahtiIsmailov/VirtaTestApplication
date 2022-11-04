@@ -17,9 +17,9 @@ class ApiRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getStations(latitude:Float,longitude:Float,limit:Int):List<StationResponse>{
+    override suspend fun getStations(latitude:Double,longitude:Double,limit:Int):List<StationResponse>{
         return withContext(Dispatchers.IO){
-            api.getStation(latitude,longitude,limit)
+            api.getStation(latitude.toFloat(),longitude.toFloat(),limit)
         }
     }
 }

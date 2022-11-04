@@ -9,7 +9,7 @@ class StationsInteractorImpl @Inject constructor(
 ): StationsInteractor {
 
 
-    override suspend fun getStations(latitude:Float,longitude:Float,limit:Int): List<StationResponse> {
+    override suspend fun getStations(latitude:Double,longitude:Double,limit:Int): List<StationResponse> {
         return repository.getStations(latitude,longitude,limit)
     }
 }

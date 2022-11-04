@@ -25,7 +25,7 @@ class StationFragment : BaseFragment() {
 
     private val callback = object : StationsAdapter.OnItemClickCallBack {
         override fun onItemClick(index: Int) {
-            //viewModel.onAddressItemClick(index)
+           // viewModel.getDistanceFromUser(index)
         }
     }
 
@@ -44,25 +44,33 @@ class StationFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getStations()
         initObservable()
+        initListener()
 
     }
-    private fun initObservable(){
-        viewModel.stationsLiveData.observeUIState(
-            onSuccess = {
-                adapter = StationsAdapter(
-                    requireContext(),
-                    it!!,
-                    callback
-                )
-                binding.recycle.adapter = adapter
-            },
-            onError = {
-                Toast.makeText(requireContext(), "123123", Toast.LENGTH_SHORT).show()
-            },
-            onLoading = {
 
-            }
-        )
+    private fun initListener(){}
+
+
+    private fun initObservable(){
+        with(viewModel){
+            stationsLiveData.observeUIState(
+                onSuccess = {
+                    adapter = StationsAdapter(
+                        requireContext(),
+                        it!!,
+                        callback
+                    )
+                    binding.recycle.adapter = adapter
+                },
+                onError = {
+                    Toast.makeText(requireContext(), "123123", Toast.LENGTH_SHORT).show()
+                },
+                onLoading = {
+
+                }
+            )
+        }
+
     }
 
 

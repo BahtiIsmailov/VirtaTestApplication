@@ -9,6 +9,7 @@ import com.example.testapplication.presentation.login.domain.LogginInteractor
 import com.example.testapplication.presentation.login.domain.LoginInteractorImpl
 import com.example.testapplication.presentation.station.domain.StationsInteractor
 import com.example.testapplication.presentation.station.domain.StationsInteractorImpl
+import com.example.testapplication.presentation.station.resource_provider.ResourceProvider
 import com.example.testapplication.utils.prefs.SharedWorker
 import com.example.testapplication.utils.prefs.SharedWorkerImpl
 import dagger.Module
@@ -40,6 +41,12 @@ class AppModule {
     @Provides
     fun provideSharedWorker(@ApplicationContext context: Context): SharedWorker{
         return SharedWorkerImpl(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideResourceProvider(@ApplicationContext context: Context):ResourceProvider{
+        return ResourceProvider(context)
     }
 
     @Singleton
